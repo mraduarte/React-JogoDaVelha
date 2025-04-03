@@ -1,10 +1,38 @@
-import React from "react";
+import { useState } from "react";
 import Square from "./Square";
 
 const Board = () => {
+  const [isNext, setIsNext] = useState<boolean>(true);
+  const winner = false;
+
   return (
     <div>
-      <Square />
+      <div className="status">
+        Status:{" "}
+        {winner ? (
+          <p className="winner">O vencedor é: {winner}!</p>
+        ) : (
+          `Próximo a jogar: ${isNext ? "X" : "O"}`
+        )}
+      </div>
+      <div className="board-row">
+        <Square />
+        <Square />
+        <Square />
+      </div>
+      <div className="board-row">
+        <Square />
+        <Square />
+        <Square />
+      </div>
+      <div className="board-row">
+        <Square />
+        <Square />
+        <Square />
+      </div>
+      <button className="reset-button">
+        Reiniciar jogo
+      </button>
     </div>
   );
 };
