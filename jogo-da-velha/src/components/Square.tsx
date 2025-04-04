@@ -1,9 +1,14 @@
-import React from 'react'
+type Props = {
+  value: string | null;
+  onClick: () => void;
+};
 
-const Square = () => {
+const Square = ({ value, onClick }: Props) => {
   return (
-    <button className="square"></button>
-  )
-}
+    <button className="square" onClick={onClick}>
+      {value}
+    </button>
+  );
+};
 
-export default Square
+export default Square;
