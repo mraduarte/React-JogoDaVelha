@@ -17,17 +17,50 @@ html {
   height: 100px;
   background-color: #ddd;
   border: 1px solid #ccc;
-  font-size: 32px;
+  font-size: 40px;
   font-weight: bold;
   text-align: center;
   vertical-align: middle;
   cursor: pointer;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 10px;
+  margin: 5px;
+}
+
+.square:hover {
+  transform: scale(1.05);
+  transition: 0.2s ease;
+}
+
+.square .x{
+  text-shadow:
+    0 0 5px #ff00ff,
+    0 0 10px #ff00ff,
+    0 0 20px #ff00ff,
+    0 0 40px #ff00ff;
+}
+
+.square .o{
+  text-shadow:
+    0 0 5px #00ffff,
+    0 0 10px #00ffff,
+    0 0 20px #00ffff,
+    0 0 40px #00ffff;
 }
 
 /* Estilo para o vencedor */
 .winner {
-  background-color: #ffcc00;
+  background: #b26dff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px #b26dff;
+  text-align: center;
+  font-weight: bold;
+  color: white;
 }
+
+
 
 /* Estilo para o status do jogo */
 .status {
@@ -42,7 +75,7 @@ html {
   margin-top: 20px;
   padding: 10px 20px;
   font-size: 18px;
-  background-color: #007bff;
+  background-color: #6E88FF;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -51,5 +84,5 @@ html {
 
 /* Estilo para o botão de reiniciar no hover */
 .reset-button:hover {
-  background-color: #0056b3;
+  background-color: #826EFF;
 }

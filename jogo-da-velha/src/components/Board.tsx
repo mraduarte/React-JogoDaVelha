@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Square from "./Square";
 
 const Board = () => {
@@ -24,6 +24,18 @@ const Board = () => {
     setSquares(Array(9).fill(null));
     setIsNext(true);
   };
+
+  useEffect(() => {
+    if (!isNext && !winner) {
+      setAiIsThinking(true);
+
+      setTimeout(() => {
+        aiMove(squares, setSquares, setIsNext);
+
+        setAiIsThinking(false);
+      }, 1000);
+    }
+  }, [isNext, squares, winner]);
 
   return (
     <div>
@@ -57,7 +69,7 @@ const Board = () => {
   );
 };
 
-const calculateWinner = (squares) => {
+const calculateWinner = (squares: (string | null)[]) => {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
@@ -71,9 +83,29 @@ const calculateWinner = (squares) => {
 
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
-
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c])
       return squares[a];
+  }
+};
+
+const aiMove = (
+  squares: (string | null)[],
+  setSquares: React.Dispatch<React.SetStateAction<(string | null)[]>>,
+  setIsNext: React.Dispatch<React.SetStateAction<boolean>>
+) => {
+  let move = null;
+  for (let i = 0; i < squares.length; i++) {
+    if (!squares[i]) {
+      move = i;
+      break;
+    }
+  }
+
+  if (move !== null) {
+    const newSquares = squares.slice();
+    newSquares[move] = "O";
+    setSquares(newSquares);
+    setIsNext(true);
   }
 };
 

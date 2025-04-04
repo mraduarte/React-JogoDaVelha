@@ -6,7 +6,7 @@ type Props = {
 const Square = ({ value, onClick }: Props) => {
   return (
     <button className="square" onClick={onClick}>
-      {value}
+      <span className={value === "X" ? "x" : "o"}>{value}</span>
     </button>
   );
 };
