@@ -3,13 +3,26 @@ import Square from "./Square";
 
 const Board = () => {
   const [isNext, setIsNext] = useState<boolean>(true);
-  const winner = false;
   const [squares, setSquares] = useState<(string | null)[]>(
     Array(9).fill(null)
   );
+  const [aiIsThinking, setAiIsThinking] = useState<boolean>(false);
+  const winner = false;
 
   const handleClick = (i: number) => {
-    console.log(i);
+    if (squares[i] || winner || aiIsThinking) return;
+
+    const newSquares = squares.slice();
+
+    newSquares[i] = isNext ? "X" : "O";
+
+    setSquares(newSquares);
+    setIsNext(!isNext);
+  };
+
+  const resetGame = () => {
+    setSquares(Array(9).fill(null));
+    setIsNext(true);
   };
 
   return (
@@ -37,7 +50,7 @@ const Board = () => {
         <Square value={squares[7]} onClick={() => handleClick(7)} />
         <Square value={squares[8]} onClick={() => handleClick(8)} />
       </div>
-      <button className="reset-button">Reiniciar jogo</button>
+      <button className="reset-button" onClick={resetGame}>Reiniciar jogo</button>
     </div>
   );
 };
